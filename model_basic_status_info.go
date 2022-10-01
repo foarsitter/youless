@@ -32,7 +32,7 @@ type BasicStatusInfo struct {
 	// kWh counter of S0 input
 	Cs0 *string `json:"cs0,omitempty"`
 	// Computed power
-	Ps0 *string `json:"ps0,omitempty"`
+	Ps0 *int32 `json:"ps0,omitempty"`
 	// raw 10-bit light reflection level (without averaging)
 	Raw *int32 `json:"raw,omitempty"`
 }
@@ -311,9 +311,9 @@ func (o *BasicStatusInfo) SetCs0(v string) {
 }
 
 // GetPs0 returns the Ps0 field value if set, zero value otherwise.
-func (o *BasicStatusInfo) GetPs0() string {
+func (o *BasicStatusInfo) GetPs0() int32 {
 	if o == nil || o.Ps0 == nil {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.Ps0
@@ -321,7 +321,7 @@ func (o *BasicStatusInfo) GetPs0() string {
 
 // GetPs0Ok returns a tuple with the Ps0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BasicStatusInfo) GetPs0Ok() (*string, bool) {
+func (o *BasicStatusInfo) GetPs0Ok() (*int32, bool) {
 	if o == nil || o.Ps0 == nil {
 		return nil, false
 	}
@@ -337,8 +337,8 @@ func (o *BasicStatusInfo) HasPs0() bool {
 	return false
 }
 
-// SetPs0 gets a reference to the given string and assigns it to the Ps0 field.
-func (o *BasicStatusInfo) SetPs0(v string) {
+// SetPs0 gets a reference to the given int32 and assigns it to the Ps0 field.
+func (o *BasicStatusInfo) SetPs0(v int32) {
 	o.Ps0 = &v
 }
 

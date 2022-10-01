@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Con** | Pointer to **string** | connection status | [optional] 
 **Sts** | Pointer to **string** | Time until next status update with online monitoring | [optional] 
 **Cs0** | Pointer to **string** | kWh counter of S0 input | [optional] 
-**Ps0** | Pointer to **string** | Computed power | [optional] 
+**Ps0** | Pointer to **int32** | Computed power | [optional] 
 **Raw** | Pointer to **int32** | raw 10-bit light reflection level (without averaging) | [optional] 
 
 ## Methods
@@ -236,20 +236,20 @@ HasCs0 returns a boolean if a field has been set.
 
 ### GetPs0
 
-`func (o *BasicStatusInfo) GetPs0() string`
+`func (o *BasicStatusInfo) GetPs0() int32`
 
 GetPs0 returns the Ps0 field if non-nil, zero value otherwise.
 
 ### GetPs0Ok
 
-`func (o *BasicStatusInfo) GetPs0Ok() (*string, bool)`
+`func (o *BasicStatusInfo) GetPs0Ok() (*int32, bool)`
 
 GetPs0Ok returns a tuple with the Ps0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPs0
 
-`func (o *BasicStatusInfo) SetPs0(v string)`
+`func (o *BasicStatusInfo) SetPs0(v int32)`
 
 SetPs0 sets Ps0 field to given value.
 

@@ -79,7 +79,7 @@ components:
           type: string
         ps0:
           description: Computed power
-          type: string
+          type: integer
         raw:
           description: raw 10-bit light reflection level (without averaging)
           type: integer
