@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cnt** | Pointer to **float32** | counter in kWh | [optional] 
+**Cnt** | Pointer to **string** | counter in kWh | [optional] 
 **Pwr** | Pointer to **string** | Power consumption in Watt | [optional] 
 **Lvl** | Pointer to **string** | moving average level (intensity of reflected light on analog meters) | [optional] 
 **Dev** | Pointer to **string** | deviation of reflection | [optional] 
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCnt
 
-`func (o *BasicStatusInfo) GetCnt() float32`
+`func (o *BasicStatusInfo) GetCnt() string`
 
 GetCnt returns the Cnt field if non-nil, zero value otherwise.
 
 ### GetCntOk
 
-`func (o *BasicStatusInfo) GetCntOk() (*float32, bool)`
+`func (o *BasicStatusInfo) GetCntOk() (*string, bool)`
 
 GetCntOk returns a tuple with the Cnt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCnt
 
-`func (o *BasicStatusInfo) SetCnt(v float32)`
+`func (o *BasicStatusInfo) SetCnt(v string)`
 
 SetCnt sets Cnt field to given value.
 

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: ""
   title: Youless energy monitor
-  version: 0.1.1
+  version: 0.1.2
 servers:
 - description: Local device
   url: http://192.168.178.206/
@@ -55,8 +55,7 @@ components:
       properties:
         cnt:
           description: counter in kWh
-          format: float
-          type: number
+          type: string
         pwr:
           description: Power consumption in Watt
           type: string
