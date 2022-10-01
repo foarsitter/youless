@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cnt** | Pointer to **string** | counter in kWh | [optional] 
-**Pwr** | Pointer to **string** | Power consumption in Watt | [optional] 
-**Lvl** | Pointer to **string** | moving average level (intensity of reflected light on analog meters) | [optional] 
+**Pwr** | Pointer to **int32** | Power consumption in Watt | [optional] 
+**Lvl** | Pointer to **int32** | moving average level (intensity of reflected light on analog meters) | [optional] 
 **Dev** | Pointer to **string** | deviation of reflection | [optional] 
 **Det** | Pointer to **string** |  | [optional] 
 **Con** | Pointer to **string** | connection status | [optional] 
@@ -61,20 +61,20 @@ HasCnt returns a boolean if a field has been set.
 
 ### GetPwr
 
-`func (o *BasicStatusInfo) GetPwr() string`
+`func (o *BasicStatusInfo) GetPwr() int32`
 
 GetPwr returns the Pwr field if non-nil, zero value otherwise.
 
 ### GetPwrOk
 
-`func (o *BasicStatusInfo) GetPwrOk() (*string, bool)`
+`func (o *BasicStatusInfo) GetPwrOk() (*int32, bool)`
 
 GetPwrOk returns a tuple with the Pwr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPwr
 
-`func (o *BasicStatusInfo) SetPwr(v string)`
+`func (o *BasicStatusInfo) SetPwr(v int32)`
 
 SetPwr sets Pwr field to given value.
 
@@ -86,20 +86,20 @@ HasPwr returns a boolean if a field has been set.
 
 ### GetLvl
 
-`func (o *BasicStatusInfo) GetLvl() string`
+`func (o *BasicStatusInfo) GetLvl() int32`
 
 GetLvl returns the Lvl field if non-nil, zero value otherwise.
 
 ### GetLvlOk
 
-`func (o *BasicStatusInfo) GetLvlOk() (*string, bool)`
+`func (o *BasicStatusInfo) GetLvlOk() (*int32, bool)`
 
 GetLvlOk returns a tuple with the Lvl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLvl
 
-`func (o *BasicStatusInfo) SetLvl(v string)`
+`func (o *BasicStatusInfo) SetLvl(v int32)`
 
 SetLvl sets Lvl field to given value.
 

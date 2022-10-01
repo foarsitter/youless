@@ -1,4 +1,4 @@
-module github.com/foarsitter/youless
+module github.com/youless/youless
 
 go 1.13
 
