@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  description: ""
+  title: Youless energy monitor
+  version: "0.1"
+servers:
+- description: Local device
+  url: http://192.168.178.206/
+tags:
+- name: Test
+paths:
+  /a:
+    get:
+      description: Basic status info
+      parameters:
+      - explode: true
+        in: query
+        name: f
+        required: false
+        schema:
+          $ref: '#/components/schemas/OutputFormat'
+        style: form
+      responses:
+        "200":
+          content:
+            appliation/json:
+              schema:
+                $ref: '#/components/schemas/BasicStatusInfo'
+            text/plain: {}
+          description: Ok
+  /d:
+    get:
+      description: Device info
+      responses:
+        "200":
+          content:
+            appliation/json:
+              schema:
+                $ref: '#/components/schemas/DeviceSchema'
+          description: Ok
+components:
+  schemas:
+    DeviceSchema:
+      properties:
+        model:
+          type: string
+        mac:
+          type: string
+      type: object
+    OutputFormat:
+      enum:
+      - j
+      type: string
+    BasicStatusInfo:
+      properties:
+        cnt:
+          description: counter in kWh
+          format: float
+          type: number
+        pwr:
+          description: Power consumption in Watt
+          type: integer
+        lvl:
+          description: moving average level (intensity of reflected light on analog
+            meters)
+          type: integer
+        dev:
+          description: deviation of reflection
+          type: string
+        det:
+          type: string
+        con:
+          description: connection status
+          type: string
+        sts:
+          description: Time until next status update with online monitoring
+          type: string
+        cs0:
+          description: kWh counter of S0 input
+          format: float
+          type: number
+        ps0:
+          description: Computed power
+          format: float
+          type: number
+        raw:
+          description: raw 10-bit light reflection level (without averaging)
+          type: integer
+      type: object
