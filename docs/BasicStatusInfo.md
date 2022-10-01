@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cnt** | Pointer to **float32** | counter in kWh | [optional] 
-**Pwr** | Pointer to **int32** | Power consumption in Watt | [optional] 
-**Lvl** | Pointer to **int32** | moving average level (intensity of reflected light on analog meters) | [optional] 
+**Pwr** | Pointer to **string** | Power consumption in Watt | [optional] 
+**Lvl** | Pointer to **string** | moving average level (intensity of reflected light on analog meters) | [optional] 
 **Dev** | Pointer to **string** | deviation of reflection | [optional] 
 **Det** | Pointer to **string** |  | [optional] 
 **Con** | Pointer to **string** | connection status | [optional] 
 **Sts** | Pointer to **string** | Time until next status update with online monitoring | [optional] 
-**Cs0** | Pointer to **float32** | kWh counter of S0 input | [optional] 
-**Ps0** | Pointer to **float32** | Computed power | [optional] 
+**Cs0** | Pointer to **string** | kWh counter of S0 input | [optional] 
+**Ps0** | Pointer to **string** | Computed power | [optional] 
 **Raw** | Pointer to **int32** | raw 10-bit light reflection level (without averaging) | [optional] 
 
 ## Methods
@@ -61,20 +61,20 @@ HasCnt returns a boolean if a field has been set.
 
 ### GetPwr
 
-`func (o *BasicStatusInfo) GetPwr() int32`
+`func (o *BasicStatusInfo) GetPwr() string`
 
 GetPwr returns the Pwr field if non-nil, zero value otherwise.
 
 ### GetPwrOk
 
-`func (o *BasicStatusInfo) GetPwrOk() (*int32, bool)`
+`func (o *BasicStatusInfo) GetPwrOk() (*string, bool)`
 
 GetPwrOk returns a tuple with the Pwr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPwr
 
-`func (o *BasicStatusInfo) SetPwr(v int32)`
+`func (o *BasicStatusInfo) SetPwr(v string)`
 
 SetPwr sets Pwr field to given value.
 
@@ -86,20 +86,20 @@ HasPwr returns a boolean if a field has been set.
 
 ### GetLvl
 
-`func (o *BasicStatusInfo) GetLvl() int32`
+`func (o *BasicStatusInfo) GetLvl() string`
 
 GetLvl returns the Lvl field if non-nil, zero value otherwise.
 
 ### GetLvlOk
 
-`func (o *BasicStatusInfo) GetLvlOk() (*int32, bool)`
+`func (o *BasicStatusInfo) GetLvlOk() (*string, bool)`
 
 GetLvlOk returns a tuple with the Lvl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLvl
 
-`func (o *BasicStatusInfo) SetLvl(v int32)`
+`func (o *BasicStatusInfo) SetLvl(v string)`
 
 SetLvl sets Lvl field to given value.
 
@@ -211,20 +211,20 @@ HasSts returns a boolean if a field has been set.
 
 ### GetCs0
 
-`func (o *BasicStatusInfo) GetCs0() float32`
+`func (o *BasicStatusInfo) GetCs0() string`
 
 GetCs0 returns the Cs0 field if non-nil, zero value otherwise.
 
 ### GetCs0Ok
 
-`func (o *BasicStatusInfo) GetCs0Ok() (*float32, bool)`
+`func (o *BasicStatusInfo) GetCs0Ok() (*string, bool)`
 
 GetCs0Ok returns a tuple with the Cs0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCs0
 
-`func (o *BasicStatusInfo) SetCs0(v float32)`
+`func (o *BasicStatusInfo) SetCs0(v string)`
 
 SetCs0 sets Cs0 field to given value.
 
@@ -236,20 +236,20 @@ HasCs0 returns a boolean if a field has been set.
 
 ### GetPs0
 
-`func (o *BasicStatusInfo) GetPs0() float32`
+`func (o *BasicStatusInfo) GetPs0() string`
 
 GetPs0 returns the Ps0 field if non-nil, zero value otherwise.
 
 ### GetPs0Ok
 
-`func (o *BasicStatusInfo) GetPs0Ok() (*float32, bool)`
+`func (o *BasicStatusInfo) GetPs0Ok() (*string, bool)`
 
 GetPs0Ok returns a tuple with the Ps0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPs0
 
-`func (o *BasicStatusInfo) SetPs0(v float32)`
+`func (o *BasicStatusInfo) SetPs0(v string)`
 
 SetPs0 sets Ps0 field to given value.
 

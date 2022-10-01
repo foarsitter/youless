@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: ""
   title: Youless energy monitor
-  version: "0.1"
+  version: 0.1.1
 servers:
 - description: Local device
   url: http://192.168.178.206/
@@ -59,11 +59,11 @@ components:
           type: number
         pwr:
           description: Power consumption in Watt
-          type: integer
+          type: string
         lvl:
           description: moving average level (intensity of reflected light on analog
             meters)
-          type: integer
+          type: string
         dev:
           description: deviation of reflection
           type: string
@@ -77,12 +77,10 @@ components:
           type: string
         cs0:
           description: kWh counter of S0 input
-          format: float
-          type: number
+          type: string
         ps0:
           description: Computed power
-          format: float
-          type: number
+          type: string
         raw:
           description: raw 10-bit light reflection level (without averaging)
           type: integer
