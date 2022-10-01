@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AGet**](DefaultApi.md#AGet) | **Get** /a | 
 [**DGet**](DefaultApi.md#DGet) | **Get** /d | 
+[**GetUploadedValues**](DefaultApi.md#GetUploadedValues) | **Get** /e | Uploaded Values
 
 
 
@@ -121,6 +122,67 @@ Other parameters are passed through a pointer to a apiDGetRequest struct via the
 ### Return type
 
 [**DeviceSchema**](DeviceSchema.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: appliation/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUploadedValues
+
+> UploadedValues GetUploadedValues(ctx).Execute()
+
+Uploaded Values
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetUploadedValues(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetUploadedValues``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUploadedValues`: UploadedValues
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetUploadedValues`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUploadedValuesRequest struct via the builder pattern
+
+
+### Return type
+
+[**UploadedValues**](UploadedValues.md)
 
 ### Authorization
 

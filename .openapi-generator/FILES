@@ -9,11 +9,13 @@ docs/BasicStatusInfo.md
 docs/DefaultApi.md
 docs/DeviceSchema.md
 docs/OutputFormat.md
+docs/UploadedValues.md
 git_push.sh
 go.mod
 go.sum
 model_basic_status_info.go
 model_device_schema.go
 model_output_format.go
+model_uploaded_values.go
 response.go
 utils.go

@@ -2,13 +2,24 @@ openapi: 3.0.0
 info:
   description: ""
   title: Youless energy monitor
-  version: 0.1.3
+  version: 0.1.4
 servers:
 - description: Local device
   url: http://192.168.178.206/
-tags:
-- name: Test
 paths:
+  /e:
+    get:
+      description: |
+        The url "/e" will output the same values as being used to upload and are thus firmware dependant. These were probably used for debugging, but can also be used for other applications like connecting to Domoticz or OpenHab.
+      operationId: GetUploadedValues
+      responses:
+        "200":
+          content:
+            appliation/json:
+              schema:
+                $ref: '#/components/schemas/UploadedValues'
+          description: Ok
+      summary: Uploaded Values
   /a:
     get:
       description: Basic status info
@@ -51,6 +62,58 @@ components:
       enum:
       - j
       type: string
+    UploadedValues:
+      properties:
+        tm:
+          description: |
+            unix-time-format (1489333828 => Sun, 12 Mar 2017 15:50:28 GMT)
+          type: integer
+        net:
+          description: |
+            Netto counter, as displayed in the web-interface of the LS-120. It seems equal to: p1 + p2 - n1 - n2 Perhaps also includes some user set offset.
+          format: float
+          type: number
+        pwr:
+          description: Actual power use in Watt (can be negative)
+          type: integer
+        p1:
+          description: P1 consumption counter (low tariff)
+          format: float
+          type: number
+        p2:
+          description: P2 consumption counter (high tariff)
+          format: float
+          type: number
+        n1:
+          description: N1 production counter (low tariff)
+          format: float
+          type: number
+        n2:
+          description: N2 production counter (high tariff)
+          format: float
+          type: number
+        gas:
+          description: counter gas-meter (in m^3)
+          format: float
+          type: number
+        cs0:
+          description: |
+            kWh counter of S0 input
+          format: float
+          type: number
+        ps0:
+          description: |
+            Computed power
+          type: integer
+        ts0:
+          description: |
+            Unix timestamp of the last S0 measurement.
+          type: integer
+        gts:
+          description: |
+            Last timestamp created by the 'smart meter'. "1711032100" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.
+          type: integer
+      type: object
     BasicStatusInfo:
       properties:
         cnt:
