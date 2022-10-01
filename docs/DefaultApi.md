@@ -139,7 +139,7 @@ No authorization required
 
 ## GetUploadedValues
 
-> UploadedValues GetUploadedValues(ctx).Execute()
+> []UploadedValues GetUploadedValues(ctx).Execute()
 
 Uploaded Values
 
@@ -166,7 +166,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetUploadedValues``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetUploadedValues`: UploadedValues
+    // response from `GetUploadedValues`: []UploadedValues
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetUploadedValues`: %v\n", resp)
 }
 ```
@@ -182,7 +182,7 @@ Other parameters are passed through a pointer to a apiGetUploadedValuesRequest s
 
 ### Return type
 
-[**UploadedValues**](UploadedValues.md)
+[**[]UploadedValues**](UploadedValues.md)
 
 ### Authorization
 

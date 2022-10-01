@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: ""
   title: Youless energy monitor
-  version: 0.1.4
+  version: 0.1.5
 servers:
 - description: Local device
   url: http://192.168.178.206/
@@ -17,7 +17,7 @@ paths:
           content:
             appliation/json:
               schema:
-                $ref: '#/components/schemas/UploadedValues'
+                $ref: '#/components/schemas/GetUploadedValuesResponse'
           description: Ok
       summary: Uploaded Values
   /a:
@@ -62,6 +62,10 @@ components:
       enum:
       - j
       type: string
+    GetUploadedValuesResponse:
+      items:
+        $ref: '#/components/schemas/UploadedValues'
+      type: array
     UploadedValues:
       properties:
         tm:
