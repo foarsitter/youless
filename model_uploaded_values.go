@@ -17,7 +17,7 @@ import (
 // UploadedValues struct for UploadedValues
 type UploadedValues struct {
 	// unix-time-format (1489333828 => Sun, 12 Mar 2017 15:50:28 GMT)
-	Tm *int32 `json:"tm,omitempty"`
+	Tm *int64 `json:"tm,omitempty"`
 	// Netto counter, as displayed in the web-interface of the LS-120. It seems equal to: p1 + p2 - n1 - n2 Perhaps also includes some user set offset.
 	Net *float32 `json:"net,omitempty"`
 	// Actual power use in Watt (can be negative)
@@ -37,7 +37,7 @@ type UploadedValues struct {
 	// Computed power
 	Ps0 *int32 `json:"ps0,omitempty"`
 	// Unix timestamp of the last S0 measurement.
-	Ts0 *int32 `json:"ts0,omitempty"`
+	Ts0 *int64 `json:"ts0,omitempty"`
 	// Last timestamp created by the 'smart meter'. \"1711032100\" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.
 	Gts *int32 `json:"gts,omitempty"`
 }
@@ -60,9 +60,9 @@ func NewUploadedValuesWithDefaults() *UploadedValues {
 }
 
 // GetTm returns the Tm field value if set, zero value otherwise.
-func (o *UploadedValues) GetTm() int32 {
+func (o *UploadedValues) GetTm() int64 {
 	if o == nil || o.Tm == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Tm
@@ -70,7 +70,7 @@ func (o *UploadedValues) GetTm() int32 {
 
 // GetTmOk returns a tuple with the Tm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UploadedValues) GetTmOk() (*int32, bool) {
+func (o *UploadedValues) GetTmOk() (*int64, bool) {
 	if o == nil || o.Tm == nil {
 		return nil, false
 	}
@@ -86,8 +86,8 @@ func (o *UploadedValues) HasTm() bool {
 	return false
 }
 
-// SetTm gets a reference to the given int32 and assigns it to the Tm field.
-func (o *UploadedValues) SetTm(v int32) {
+// SetTm gets a reference to the given int64 and assigns it to the Tm field.
+func (o *UploadedValues) SetTm(v int64) {
 	o.Tm = &v
 }
 
@@ -380,9 +380,9 @@ func (o *UploadedValues) SetPs0(v int32) {
 }
 
 // GetTs0 returns the Ts0 field value if set, zero value otherwise.
-func (o *UploadedValues) GetTs0() int32 {
+func (o *UploadedValues) GetTs0() int64 {
 	if o == nil || o.Ts0 == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Ts0
@@ -390,7 +390,7 @@ func (o *UploadedValues) GetTs0() int32 {
 
 // GetTs0Ok returns a tuple with the Ts0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UploadedValues) GetTs0Ok() (*int32, bool) {
+func (o *UploadedValues) GetTs0Ok() (*int64, bool) {
 	if o == nil || o.Ts0 == nil {
 		return nil, false
 	}
@@ -406,8 +406,8 @@ func (o *UploadedValues) HasTs0() bool {
 	return false
 }
 
-// SetTs0 gets a reference to the given int32 and assigns it to the Ts0 field.
-func (o *UploadedValues) SetTs0(v int32) {
+// SetTs0 gets a reference to the given int64 and assigns it to the Ts0 field.
+func (o *UploadedValues) SetTs0(v int64) {
 	o.Ts0 = &v
 }
 

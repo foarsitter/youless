@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tm** | Pointer to **int32** | unix-time-format (1489333828 &#x3D;&gt; Sun, 12 Mar 2017 15:50:28 GMT)  | [optional] 
+**Tm** | Pointer to **int64** | unix-time-format (1489333828 &#x3D;&gt; Sun, 12 Mar 2017 15:50:28 GMT)  | [optional] 
 **Net** | Pointer to **float32** | Netto counter, as displayed in the web-interface of the LS-120. It seems equal to: p1 + p2 - n1 - n2 Perhaps also includes some user set offset.  | [optional] 
 **Pwr** | Pointer to **int32** | Actual power use in Watt (can be negative) | [optional] 
 **P1** | Pointer to **float32** | P1 consumption counter (low tariff) | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Gas** | Pointer to **float32** | counter gas-meter (in m^3) | [optional] 
 **Cs0** | Pointer to **float32** | kWh counter of S0 input  | [optional] 
 **Ps0** | Pointer to **int32** | Computed power  | [optional] 
-**Ts0** | Pointer to **int32** | Unix timestamp of the last S0 measurement.  | [optional] 
+**Ts0** | Pointer to **int64** | Unix timestamp of the last S0 measurement.  | [optional] 
 **Gts** | Pointer to **int32** | Last timestamp created by the &#39;smart meter&#39;. \&quot;1711032100\&quot; &#x3D; 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.  | [optional] 
 
 ## Methods
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTm
 
-`func (o *UploadedValues) GetTm() int32`
+`func (o *UploadedValues) GetTm() int64`
 
 GetTm returns the Tm field if non-nil, zero value otherwise.
 
 ### GetTmOk
 
-`func (o *UploadedValues) GetTmOk() (*int32, bool)`
+`func (o *UploadedValues) GetTmOk() (*int64, bool)`
 
 GetTmOk returns a tuple with the Tm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTm
 
-`func (o *UploadedValues) SetTm(v int32)`
+`func (o *UploadedValues) SetTm(v int64)`
 
 SetTm sets Tm field to given value.
 
@@ -288,20 +288,20 @@ HasPs0 returns a boolean if a field has been set.
 
 ### GetTs0
 
-`func (o *UploadedValues) GetTs0() int32`
+`func (o *UploadedValues) GetTs0() int64`
 
 GetTs0 returns the Ts0 field if non-nil, zero value otherwise.
 
 ### GetTs0Ok
 
-`func (o *UploadedValues) GetTs0Ok() (*int32, bool)`
+`func (o *UploadedValues) GetTs0Ok() (*int64, bool)`
 
 GetTs0Ok returns a tuple with the Ts0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTs0
 
-`func (o *UploadedValues) SetTs0(v int32)`
+`func (o *UploadedValues) SetTs0(v int64)`
 
 SetTs0 sets Ts0 field to given value.
 

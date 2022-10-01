@@ -71,7 +71,7 @@ components:
         tm:
           description: |
             unix-time-format (1489333828 => Sun, 12 Mar 2017 15:50:28 GMT)
-          type: integer
+          type: int64
         net:
           description: |
             Netto counter, as displayed in the web-interface of the LS-120. It seems equal to: p1 + p2 - n1 - n2 Perhaps also includes some user set offset.
@@ -112,7 +112,7 @@ components:
         ts0:
           description: |
             Unix timestamp of the last S0 measurement.
-          type: integer
+          type: int64
         gts:
           description: |
             Last timestamp created by the 'smart meter'. "1711032100" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.
