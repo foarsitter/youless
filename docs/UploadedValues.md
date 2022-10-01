@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Cs0** | Pointer to **float32** | kWh counter of S0 input  | [optional] 
 **Ps0** | Pointer to **int32** | Computed power  | [optional] 
 **Ts0** | Pointer to **int64** | Unix timestamp of the last S0 measurement.  | [optional] 
-**Gts** | Pointer to **int32** | Last timestamp created by the &#39;smart meter&#39;. \&quot;1711032100\&quot; &#x3D; 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.  | [optional] 
+**Gts** | Pointer to **int64** | Last timestamp created by the &#39;smart meter&#39;. \&quot;1711032100\&quot; &#x3D; 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.  | [optional] 
 
 ## Methods
 
@@ -313,20 +313,20 @@ HasTs0 returns a boolean if a field has been set.
 
 ### GetGts
 
-`func (o *UploadedValues) GetGts() int32`
+`func (o *UploadedValues) GetGts() int64`
 
 GetGts returns the Gts field if non-nil, zero value otherwise.
 
 ### GetGtsOk
 
-`func (o *UploadedValues) GetGtsOk() (*int32, bool)`
+`func (o *UploadedValues) GetGtsOk() (*int64, bool)`
 
 GetGtsOk returns a tuple with the Gts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGts
 
-`func (o *UploadedValues) SetGts(v int32)`
+`func (o *UploadedValues) SetGts(v int64)`
 
 SetGts sets Gts field to given value.
 

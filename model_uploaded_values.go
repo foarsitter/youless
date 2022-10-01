@@ -39,7 +39,7 @@ type UploadedValues struct {
 	// Unix timestamp of the last S0 measurement.
 	Ts0 *int64 `json:"ts0,omitempty"`
 	// Last timestamp created by the 'smart meter'. \"1711032100\" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.
-	Gts *int32 `json:"gts,omitempty"`
+	Gts *int64 `json:"gts,omitempty"`
 }
 
 // NewUploadedValues instantiates a new UploadedValues object
@@ -412,9 +412,9 @@ func (o *UploadedValues) SetTs0(v int64) {
 }
 
 // GetGts returns the Gts field value if set, zero value otherwise.
-func (o *UploadedValues) GetGts() int32 {
+func (o *UploadedValues) GetGts() int64 {
 	if o == nil || o.Gts == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Gts
@@ -422,7 +422,7 @@ func (o *UploadedValues) GetGts() int32 {
 
 // GetGtsOk returns a tuple with the Gts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UploadedValues) GetGtsOk() (*int32, bool) {
+func (o *UploadedValues) GetGtsOk() (*int64, bool) {
 	if o == nil || o.Gts == nil {
 		return nil, false
 	}
@@ -438,8 +438,8 @@ func (o *UploadedValues) HasGts() bool {
 	return false
 }
 
-// SetGts gets a reference to the given int32 and assigns it to the Gts field.
-func (o *UploadedValues) SetGts(v int32) {
+// SetGts gets a reference to the given int64 and assigns it to the Gts field.
+func (o *UploadedValues) SetGts(v int64) {
 	o.Gts = &v
 }
 
