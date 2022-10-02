@@ -19,7 +19,7 @@ jobs:
           path: generator
       - name: Update client code
         run: |
-            version=$(cat generator/version.txt)
+            export VERSION=$(cat generator/version.txt)
             generator/create.sh
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.0

@@ -7,4 +7,4 @@ docker run --rm \
   -g go \
   -o /output \
   --additional-properties=packageName=youless \
-  --additional-properties=packageVersion="${version}"
+  --additional-properties=packageVersion="${VERSION}"
