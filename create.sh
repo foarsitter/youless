@@ -3,7 +3,7 @@ docker run --rm \
   -v "${PWD}"/generator:/local openapitools/openapi-generator-cli generate \
    --git-repo-id youless \
    --git-user-id foarsitter \
-  -i /local/Jelmert-Engineering-Youless-0.1.5-swagger.json \
+  -i /local/openapi.json \
   -g go \
   -o /output \
   --additional-properties=packageName=youless \

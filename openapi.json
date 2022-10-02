@@ -1,7 +1,7 @@
 {
   "openapi" : "3.0.0",
   "info" : {
-    "version" : "0.1.4",
+    "version" : "0.1.5",
     "title" : "Youless energy monitor",
     "description" : ""
   },
@@ -26,12 +26,19 @@
         "type" : "string",
         "enum" : [ "j" ]
       },
+      "GetUploadedValuesResponse" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/UploadedValues"
+        }
+      },
       "UploadedValues" : {
         "type" : "object",
         "properties" : {
           "tm" : {
             "description" : "unix-time-format (1489333828 => Sun, 12 Mar 2017 15:50:28 GMT)\n",
-            "type" : "integer"
+            "type" : "integer",
+            "format": "int64"
           },
           "net" : {
             "type" : "number",
@@ -78,10 +85,12 @@
           },
           "ts0" : {
             "type" : "integer",
+            "format": "int64",
             "description" : "Unix timestamp of the last S0 measurement.\n"
           },
           "gts" : {
             "type" : "integer",
+            "format": "int64",
             "description" : "Last timestamp created by the 'smart meter'. \"1711032100\" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.\n"
           }
         }
@@ -144,7 +153,7 @@
             "content" : {
               "appliation/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/UploadedValues"
+                  "$ref" : "#/components/schemas/GetUploadedValuesResponse"
                 }
               }
             }
@@ -154,6 +163,7 @@
     },
     "/a" : {
       "get" : {
+        "operationId" : "GetBasicInfo",
         "description" : "Basic status info",
         "parameters" : [ {
           "in" : "query",
