@@ -11,7 +11,7 @@ jobs:
       - name: Checkout the code of the current version
         uses: actions/checkout@v2
         with:
-          ref: go-client
+          ref: master
           path: client
       - name: Checkout the openapi specification
         uses: actions/checkout@v2
