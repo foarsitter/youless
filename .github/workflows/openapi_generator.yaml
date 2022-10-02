@@ -40,5 +40,5 @@ jobs:
           author_email: info@jelmert.nl
           commit: --signoff
           message: 'Next version'
-          tag: $VERSION
+          tag: ${{env.VERSION}}
           push: true
