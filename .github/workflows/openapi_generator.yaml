@@ -11,7 +11,7 @@ jobs:
       - name: Checkout current client
         uses: actions/checkout@v2
         with:
-          repository: master
+          ref: master
           path: /client
       - name: checkout openapi specification
         uses: actions/checkout@v2
