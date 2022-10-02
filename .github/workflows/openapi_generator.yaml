@@ -19,8 +19,8 @@ jobs:
           path: generator
       - name: Update client code
         run: |
-            version=$(cat version.txt)
-            /generator/create.sh
+            version=$(cat generator/version.txt)
+            generator/create.sh
       - name: Tag and push current repo code
         run: |
           cd /generator
