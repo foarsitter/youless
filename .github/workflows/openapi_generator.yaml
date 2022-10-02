@@ -22,7 +22,7 @@ jobs:
             export VERSION=v$(python3 -c "import json; print(json.load(open('generator/openapi.json'))['info']['version'])")
             echo $VERSION
             generator/create.sh
-            echo "::set-env name=VERSION::$VERSION"
+            echo "{VERSION}=$VERSION" >> $GITHUB_ENV
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.0
         with:
