@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: /generator
+      - name: Update client code
         run: |
             version=$(cat version.txt)
             /generator/create.sh
