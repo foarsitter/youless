@@ -23,7 +23,7 @@ jobs:
             generator/create.sh
       - name: Tag and push current repo code
         run: |
-          cd /generator
+          cd generator
           git add --all
           git commit -m 'next version'
           git tag $version
