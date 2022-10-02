@@ -1,6 +1,6 @@
 docker run --rm \
-  -v /client:/output \
-  -v /generator:/local openapitools/openapi-generator-cli generate \
+  -v "${PWD}"/client:/output \
+  -v "${PWD}"/generator:/local openapitools/openapi-generator-cli generate \
    --git-repo-id youless \
    --git-user-id foarsitter \
   -i /local/Jelmert-Engineering-Youless-0.1.5-swagger.json \
