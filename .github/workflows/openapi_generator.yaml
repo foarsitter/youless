@@ -1,0 +1,17 @@
+name: openapi_generator
+on:
+  push:
+    branches:
+      - openapi-generator
+jobs:
+  tag_repo:
+    name: Get runner id and tag the current code snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Tag and push current repo code
+        run: |
+          version=$(version.txt)
+          echo $version
+          git tag $version
+          git push origin $version
