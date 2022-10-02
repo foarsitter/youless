@@ -17,17 +17,23 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: generator
-      - name: Update client code
-        run: |
-            version=$(cat generator/version.txt)
-            generator/create.sh
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v9.1.0
+      - name: Generate Go Client
+        uses: openapi-generators/openapitools-generator-action@v1
         with:
-          author_name: Github Action
-          author_email: info@jelmert.nl
-          commit: --signoff
-          cwd: generator
-          message: 'Next version'
-          tag: $version
-          push: true
+          generator: go
+          config-file: generator.yml
+          openapi-file: Jelmert-Engineering-Youless-0.1.5-swagger.json
+          template-dir: client
+          command-args: >
+            --git-repo-id: youless
+            --git-user-id: foarsitter
+#      - name: Add & Commit
+#        uses: EndBug/add-and-commit@v9.1.0
+#        with:
+#          author_name: Github Action
+#          author_email: info@jelmert.nl
+#          commit: --signoff
+#          cwd: client
+#          message: 'Next version'
+#          tag: $version
+#          push: true
