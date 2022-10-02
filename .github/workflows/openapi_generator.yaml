@@ -19,7 +19,7 @@ jobs:
           path: generator
       - name: Update client code
         run: |
-            export VERSION=$(python3 -c "import json; print(json.load(open('generator/openapi.json'))['info']['version'])")
+            export VERSION=v$(python3 -c "import json; print(json.load(open('generator/openapi.json'))['info']['version'])")
             echo $VERSION
             generator/create.sh
       - name: Add & Commit
