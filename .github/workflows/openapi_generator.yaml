@@ -30,4 +30,4 @@ jobs:
           cwd: generator
           message: 'Next version'
           tag: $version
-          tag_push: '--force'
+          push: true
