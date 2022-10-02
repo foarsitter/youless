@@ -5,15 +5,15 @@ on:
       - openapi-generator
 jobs:
   tag_repo:
-    name: Get runner id and tag the current code snapshot
+    name: Generate a new GO client based on the openapi.json specification
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current client
+      - name: Checkout the code of the current version
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: go-client
           path: client
-      - name: checkout openapi specification
+      - name: Checkout the openapi specification
         uses: actions/checkout@v2
         with:
           path: generator
@@ -21,8 +21,17 @@ jobs:
         run: |
             export VERSION=v$(python3 -c "import json; print(json.load(open('generator/openapi.json'))['info']['version'])")
             echo $VERSION
+            rm -rf generator/*
             generator/create.sh
             echo "{VERSION}=$VERSION" >> $GITHUB_ENV
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.13.1' # The Go version to download (if necessary) and use.
+      - run: |
+           cd generator
+           go mod tidy
+           go fmt
+           cd ..
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.0
         with:
