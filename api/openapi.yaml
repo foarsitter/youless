@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: ""
   title: Youless energy monitor GO client
-  version: 0.1.6
+  version: 0.1.7.1
 servers:
 - description: Local device
   url: http://192.168.178.206/
@@ -43,6 +43,7 @@ paths:
   /d:
     get:
       description: Device info
+      operationId: GetDeviceInfo
       responses:
         "200":
           content:

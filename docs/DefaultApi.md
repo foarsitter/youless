@@ -4,71 +4,10 @@ All URIs are relative to *http://192.168.178.206*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DGet**](DefaultApi.md#DGet) | **Get** /d | 
 [**GetBasicInfo**](DefaultApi.md#GetBasicInfo) | **Get** /a | 
+[**GetDeviceInfo**](DefaultApi.md#GetDeviceInfo) | **Get** /d | 
 [**GetUploadedValues**](DefaultApi.md#GetUploadedValues) | **Get** /e | Uploaded Values
 
-
-
-## DGet
-
-> DeviceSchema DGet(ctx).Execute()
-
-
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DGet(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DGet`: DeviceSchema
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDGetRequest struct via the builder pattern
-
-
-### Return type
-
-[**DeviceSchema**](DeviceSchema.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: appliation/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## GetBasicInfo
@@ -131,6 +70,67 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: appliation/json, text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeviceInfo
+
+> DeviceSchema GetDeviceInfo(ctx).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetDeviceInfo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetDeviceInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeviceInfo`: DeviceSchema
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetDeviceInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeviceInfoRequest struct via the builder pattern
+
+
+### Return type
+
+[**DeviceSchema**](DeviceSchema.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: appliation/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
