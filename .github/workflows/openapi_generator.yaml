@@ -21,7 +21,7 @@ jobs:
         run: |
             export VERSION=v$(python3 -c "import json; print(json.load(open('generator/openapi.json'))['info']['version'])")
             echo $VERSION
-            find -path './youless/*' ! -path "*/.git/*" -exec rm {} \;
+            find -path './client/*' ! -path "*/.git/*" -exec rm {} \;
             generator/create.sh
             echo "{VERSION}=$VERSION" >> $GITHUB_ENV
       - uses: actions/setup-go@v3
