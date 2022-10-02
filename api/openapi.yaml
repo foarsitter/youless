@@ -23,6 +23,7 @@ paths:
   /a:
     get:
       description: Basic status info
+      operationId: GetBasicInfo
       parameters:
       - explode: true
         in: query
