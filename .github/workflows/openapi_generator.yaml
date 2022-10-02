@@ -28,6 +28,7 @@ jobs:
         with:
           go-version: '^1.13.1' # The Go version to download (if necessary) and use.
       - run: |
+           chown -R $USER:$USER ./client
            cd client
            go mod tidy
            go fmt
