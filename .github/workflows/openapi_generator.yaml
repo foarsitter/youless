@@ -8,10 +8,22 @@ jobs:
     name: Get runner id and tag the current code snapshot
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout current client
+        uses: actions/checkout@v2
+        with:
+          repository: master
+          path: /client
+      - name: checkout openapi specification
+        uses: actions/checkout@v2
+        with:
+          path: /generator
+        run: |
+            version=$(cat version.txt)
+            /generator/create.sh
       - name: Tag and push current repo code
         run: |
-          version=$(cat version.txt)
-          echo $version
+          cd /generator
+          git add --all
+          git commit -m 'next version'
           git tag $version
           git push origin $version
