@@ -29,5 +29,5 @@ jobs:
           commit: --signoff
           cwd: client
           message: 'Next version'
-          tag: $version
+          tag: $VERSION
           push: true
