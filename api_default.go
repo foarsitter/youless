@@ -18,13 +18,14 @@ import (
 	"net/url"
 )
 
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
 type ApiAGetRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *DefaultApiService
-	f          *OutputFormat
+	f *OutputFormat
 }
 
 func (r ApiAGetRequest) F(f OutputFormat) ApiAGetRequest {
@@ -41,25 +42,24 @@ AGet Method for AGet
 
 Basic status info
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAGetRequest
 */
 func (a *DefaultApiService) AGet(ctx context.Context) ApiAGetRequest {
 	return ApiAGetRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return BasicStatusInfo
+//  @return BasicStatusInfo
 func (a *DefaultApiService) AGetExecute(r ApiAGetRequest) (*BasicStatusInfo, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BasicStatusInfo
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BasicStatusInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AGet")
@@ -131,7 +131,7 @@ func (a *DefaultApiService) AGetExecute(r ApiAGetRequest) (*BasicStatusInfo, *ht
 }
 
 type ApiDGetRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *DefaultApiService
 }
 
@@ -144,25 +144,24 @@ DGet Method for DGet
 
 Device info
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDGetRequest
 */
 func (a *DefaultApiService) DGet(ctx context.Context) ApiDGetRequest {
 	return ApiDGetRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DeviceSchema
+//  @return DeviceSchema
 func (a *DefaultApiService) DGetExecute(r ApiDGetRequest) (*DeviceSchema, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeviceSchema
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceSchema
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DGet")
@@ -231,7 +230,7 @@ func (a *DefaultApiService) DGetExecute(r ApiDGetRequest) (*DeviceSchema, *http.
 }
 
 type ApiGetUploadedValuesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *DefaultApiService
 }
 
@@ -244,25 +243,25 @@ GetUploadedValues Uploaded Values
 
 The url "/e" will output the same values as being used to upload and are thus firmware dependant. These were probably used for debugging, but can also be used for other applications like connecting to Domoticz or OpenHab.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetUploadedValuesRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetUploadedValuesRequest
 */
 func (a *DefaultApiService) GetUploadedValues(ctx context.Context) ApiGetUploadedValuesRequest {
 	return ApiGetUploadedValuesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []UploadedValues
+//  @return []UploadedValues
 func (a *DefaultApiService) GetUploadedValuesExecute(r ApiGetUploadedValuesRequest) ([]UploadedValues, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []UploadedValues
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []UploadedValues
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUploadedValues")

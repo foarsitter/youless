@@ -16,9 +16,9 @@ import (
 
 // UploadedValues struct for UploadedValues
 type UploadedValues struct {
-	// unix-time-format (1489333828 => Sun, 12 Mar 2017 15:50:28 GMT)
+	// unix-time-format (1489333828 => Sun, 12 Mar 2017 15:50:28 GMT) 
 	Tm *int64 `json:"tm,omitempty"`
-	// Netto counter, as displayed in the web-interface of the LS-120. It seems equal to: p1 + p2 - n1 - n2 Perhaps also includes some user set offset.
+	// Netto counter, as displayed in the web-interface of the LS-120. It seems equal to: p1 + p2 - n1 - n2 Perhaps also includes some user set offset. 
 	Net *float32 `json:"net,omitempty"`
 	// Actual power use in Watt (can be negative)
 	Pwr *int32 `json:"pwr,omitempty"`
@@ -32,13 +32,13 @@ type UploadedValues struct {
 	N2 *float32 `json:"n2,omitempty"`
 	// counter gas-meter (in m^3)
 	Gas *float32 `json:"gas,omitempty"`
-	// kWh counter of S0 input
+	// kWh counter of S0 input 
 	Cs0 *float32 `json:"cs0,omitempty"`
-	// Computed power
+	// Computed power 
 	Ps0 *int32 `json:"ps0,omitempty"`
-	// Unix timestamp of the last S0 measurement.
+	// Unix timestamp of the last S0 measurement. 
 	Ts0 *int64 `json:"ts0,omitempty"`
-	// Last timestamp created by the 'smart meter'. \"1711032100\" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails.
+	// Last timestamp created by the 'smart meter'. \"1711032100\" = 2017/11/03 21:00 (yyMMddhhmm) Can be used to see if P1 communication fails. 
 	Gts *int64 `json:"gts,omitempty"`
 }
 
@@ -519,3 +519,5 @@ func (v *NullableUploadedValues) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

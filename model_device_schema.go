@@ -17,7 +17,7 @@ import (
 // DeviceSchema struct for DeviceSchema
 type DeviceSchema struct {
 	Model *string `json:"model,omitempty"`
-	Mac   *string `json:"mac,omitempty"`
+	Mac *string `json:"mac,omitempty"`
 }
 
 // NewDeviceSchema instantiates a new DeviceSchema object
@@ -147,3 +147,5 @@ func (v *NullableDeviceSchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
