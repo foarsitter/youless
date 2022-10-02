@@ -25,8 +25,8 @@ jobs:
           openapi-file: Jelmert-Engineering-Youless-0.1.5-swagger.json
           template-dir: client
           command-args: >
-            --git-repo-id: youless
-            --git-user-id: foarsitter
+            --git-repo-id=youless
+            --git-user-id=foarsitter
 #      - name: Add & Commit
 #        uses: EndBug/add-and-commit@v9.1.0
 #        with:
