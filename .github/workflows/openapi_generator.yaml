@@ -28,17 +28,15 @@ jobs:
         with:
           go-version: '^1.13.1' # The Go version to download (if necessary) and use.
       - run: |
-           cd generator
+           cd client
            go mod tidy
            go fmt
-           cd ..
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.0
         with:
           author_name: Github Action
           author_email: info@jelmert.nl
           commit: --signoff
-          cwd: client
           message: 'Next version'
           tag: $VERSION
           push: true
