@@ -21,7 +21,7 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: go
-          config-file: generator.yml
+          config-file: generator/generator.yml
           openapi-file: Jelmert-Engineering-Youless-0.1.5-swagger.json
           template-dir: client
           command-args: >
