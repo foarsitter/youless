@@ -3,7 +3,7 @@ module youless-example
 go 1.19
 
 require (
-	github.com/foarsitter/youless v0.1.4-0.20221001173426-c1c269a511e5
+	github.com/foarsitter/youless v0.1.6-0.20221002181933-f40ee2746df6
 	github.com/prometheus/client_golang v1.13.0
 )
 

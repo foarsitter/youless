@@ -11,12 +11,23 @@ import (
 var (
 	currentEnergyUsage = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "current_energy_usage",
-		Help: "Returns the measured humidity in percent.",
+		Help: "Current energy usage in watts",
+	})
+	totalEnergyUsage = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "total_energy_usage",
+		Help: "Total energy usage in watts",
+	})
+	totalGasUsage = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "total_gas_usage",
+		Help: "Total gas usage in m^3",
 	})
 )
 
 func Background() {
 	fmt.Println("Doei")
+
+	UpdateValues()
+
 	ticker := time.NewTicker(time.Minute)
 	done := make(chan bool)
 	go func() {
@@ -25,11 +36,7 @@ func Background() {
 			case <-done:
 				return
 			case <-ticker.C:
-				fmt.Println("Hoi")
-				resp := QueryYouless()
-
-				currentEnergyUsage.Set(float64(*resp.Pwr))
-				PushToGateway()
+				UpdateValues()
 			}
 		}
 	}()
@@ -37,9 +44,26 @@ func Background() {
 	select {}
 }
 
+func UpdateValues() {
+	fmt.Println("Hoi")
+	resp, err := QueryYouless()
+
+	if err != nil {
+		return
+	} else {
+		totalEnergyUsage.Set(float64(*resp.Net))
+		totalGasUsage.Set(float64(*resp.Gas))
+		currentEnergyUsage.Set(float64(*resp.Pwr))
+		PushToGateway()
+	}
+
+}
+
 func PushToGateway() {
 	if err := push.New(os.Getenv("PUSHGATEWAY_URL"), "raspcuterie").
 		Collector(currentEnergyUsage).
+		Collector(totalEnergyUsage).
+		Collector(totalGasUsage).
 		Grouping("youless", "rivierenhof").
 		BasicAuth(os.Getenv("PUSHGATEWAY_USERNAME"), os.Getenv("PUSHGATEWAY_PASSWORD")).
 		Push(); err != nil {

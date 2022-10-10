@@ -7,16 +7,16 @@ import (
 	"os"
 )
 
-func QueryYouless() *youless.BasicStatusInfo {
-	f := youless.OutputFormat("j") // OutputFormat |  (optional)
+func QueryYouless() (youless.UploadedValues, error) {
 
 	configuration := youless.NewConfiguration()
 	apiClient := youless.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultApi.AGet(context.Background()).F(f).Execute()
+	resp, r, err := apiClient.DefaultApi.GetUploadedValues(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AGet``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+		_, _ = fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AGet``: %v\n", err)
+		_, _ = fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+		return youless.UploadedValues{}, err
 	}
 
-	return resp
+	return resp[0], nil
 }
