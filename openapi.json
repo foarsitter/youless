@@ -1,7 +1,7 @@
 {
   "openapi" : "3.0.0",
   "info" : {
-    "version" : "0.1.7.1",
+    "version" : "0.1.7.2",
     "title" : "Youless energy monitor GO client",
     "description" : ""
   },
@@ -151,7 +151,7 @@
           "200" : {
             "description" : "Ok",
             "content" : {
-              "appliation/json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/GetUploadedValuesResponse"
                 }
@@ -177,7 +177,7 @@
           "200" : {
             "description" : "Ok",
             "content" : {
-              "appliation/json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/BasicStatusInfo"
                 }
@@ -196,7 +196,7 @@
           "200" : {
             "description" : "Ok",
             "content" : {
-              "appliation/json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/DeviceSchema"
                 }
