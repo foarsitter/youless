@@ -13,6 +13,7 @@ import (
 )
 
 var cfgFile string
+var YoulessIP string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -49,10 +50,9 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.youless.yaml)")
+	rootCmd.PersistentFlags().StringVar(&YoulessIP, "ip", "", "The IP adres where your Youless is located")
 
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	viper.BindPFlag("youless.ip", rootCmd.PersistentFlags().Lookup("ip"))
 }
 
 // initConfig reads in config file and ENV variables if set.

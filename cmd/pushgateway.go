@@ -5,6 +5,8 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
+	jww "github.com/spf13/jwalterweatherman"
+	"github.com/spf13/viper"
 	"youless-example/prometheus"
 )
 
@@ -19,20 +21,30 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		prometheus.Background()
+
+		jww.INFO.Print(viper.GetString("pushgateway.auth.password"))
+		jww.INFO.Print(viper.GetString("pushgateway.auth.user"))
+		serverIP := viper.GetString("youless.ip")
+		jww.INFO.Print(serverIP)
+
+		prometheus.Background(serverIP)
 	},
 }
+
+var (
+	PushgatewayHost     string
+	PushgatewayUser     string
+	PushgatewayPassword string
+)
 
 func init() {
 	rootCmd.AddCommand(pushgatewayCmd)
 
-	// Here you will define your flags and configuration settings.
+	pushgatewayCmd.Flags().StringVar(&PushgatewayHost, "host", "", "The host url of the Prometheus Pushgateway")
+	pushgatewayCmd.Flags().StringVar(&PushgatewayUser, "user", "", "The user of the Prometheus Pushgateway")
+	pushgatewayCmd.Flags().StringVar(&PushgatewayPassword, "password", "", "The password of the Prometheus Pushgateway")
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// pushgatewayCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// pushgatewayCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	viper.BindPFlag("pushgateway.host", pushgatewayCmd.Flags().Lookup("host"))
+	viper.BindPFlag("pushgateway.auth.user", pushgatewayCmd.Flags().Lookup("user"))
+	viper.BindPFlag("pushgateway.auth.password", pushgatewayCmd.Flags().Lookup("password"))
 }

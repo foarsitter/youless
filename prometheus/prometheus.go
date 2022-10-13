@@ -23,10 +23,10 @@ var (
 	})
 )
 
-func Background() {
+func Background(serverIP string) {
 	jww.INFO.Print("Starting background process")
 
-	UpdateValues()
+	UpdateValues(serverIP)
 
 	ticker := time.NewTicker(time.Minute)
 	done := make(chan bool)
@@ -38,7 +38,7 @@ func Background() {
 				return
 			case <-ticker.C:
 				jww.INFO.Print("Updating value")
-				UpdateValues()
+				UpdateValues(serverIP)
 			}
 		}
 	}()
@@ -46,9 +46,10 @@ func Background() {
 	select {}
 }
 
-func UpdateValues() {
+func UpdateValues(serverIP string) {
+	jww.INFO.Printf("Querying server %s", serverIP)
 
-	resp, err := QueryYouless()
+	resp, err := QueryYouless(serverIP)
 
 	if err != nil {
 		jww.ERROR.Println(err)
