@@ -1,9 +1,9 @@
-package main
+package prometheus
 
 import (
-	"fmt"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/push"
+	jww "github.com/spf13/jwalterweatherman"
 	"os"
 	"time"
 )
@@ -24,7 +24,7 @@ var (
 )
 
 func Background() {
-	fmt.Println("Doei")
+	jww.INFO.Print("Starting background process")
 
 	UpdateValues()
 
@@ -34,8 +34,10 @@ func Background() {
 		for {
 			select {
 			case <-done:
+				jww.INFO.Print("Received done, stopping background progress")
 				return
 			case <-ticker.C:
+				jww.INFO.Print("Updating value")
 				UpdateValues()
 			}
 		}
@@ -45,11 +47,11 @@ func Background() {
 }
 
 func UpdateValues() {
-	fmt.Println("Hoi")
+
 	resp, err := QueryYouless()
 
 	if err != nil {
-		return
+		jww.ERROR.Println(err)
 	} else {
 		totalEnergyUsage.Set(float64(*resp.Net))
 		totalGasUsage.Set(float64(*resp.Gas))
@@ -67,6 +69,6 @@ func PushToGateway() {
 		Grouping("youless", "rivierenhof").
 		BasicAuth(os.Getenv("PUSHGATEWAY_USERNAME"), os.Getenv("PUSHGATEWAY_PASSWORD")).
 		Push(); err != nil {
-		fmt.Println("Could not push completion time to Pushgateway:", err)
+		jww.ERROR.Println("Could not push completion time to Pushgateway:", err)
 	}
 }

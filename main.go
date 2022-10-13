@@ -1,9 +1,10 @@
+/*
+Copyright © 2022 Jelmer Draaijer info@jelmert.nl
+*/
 package main
 
-import "fmt"
+import "youless-example/cmd"
 
 func main() {
-	fmt.Println("Start")
-	Background()
-	fmt.Println("Done...")
+	cmd.Execute()
 }
