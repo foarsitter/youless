@@ -1,4 +1,5 @@
 /*
+Package cmd
 Copyright © 2022 Jelmer Draaijer info@jelmert.nl
 */
 package cmd
@@ -54,7 +55,7 @@ func init() {
 	pushgatewayCmd.Flags().StringVar(&PushgatewayPassword, "password", "", "The password of the Prometheus Pushgateway")
 	pushgatewayCmd.Flags().BoolVar(&DoNotRunInBackground, "single", false, "The password of the Prometheus Pushgateway")
 
-	viper.BindPFlag("pushgateway.host", pushgatewayCmd.Flags().Lookup("host"))
-	viper.BindPFlag("pushgateway.auth.user", pushgatewayCmd.Flags().Lookup("user"))
-	viper.BindPFlag("pushgateway.auth.password", pushgatewayCmd.Flags().Lookup("password"))
+	_ = viper.BindPFlag("pushgateway.host", pushgatewayCmd.Flags().Lookup("host"))
+	_ = viper.BindPFlag("pushgateway.auth.user", pushgatewayCmd.Flags().Lookup("user"))
+	_ = viper.BindPFlag("pushgateway.auth.password", pushgatewayCmd.Flags().Lookup("password"))
 }

@@ -1,10 +1,10 @@
 /*
+Package cmd
 Copyright © 2022 Jelmer Draaijer info@jelmert.nl
 */
 package cmd
 
 import (
-	"fmt"
 	jww "github.com/spf13/jwalterweatherman"
 	"os"
 
@@ -48,10 +48,10 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.youless.yaml)")
-	rootCmd.PersistentFlags().StringVar(&YoulessIP, "ip", "", "The IP adres where your Youless is located")
+	rootCmd.PersistentFlags().StringVar(&YoulessIP, "ip", "", "The IP address where your Youless is located")
 	rootCmd.PersistentFlags().BoolVar(&Debug, "debug", false, "Show log messages")
 
-	viper.BindPFlag("youless.ip", rootCmd.PersistentFlags().Lookup("ip"))
+	_ = viper.BindPFlag("youless.ip", rootCmd.PersistentFlags().Lookup("ip"))
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -74,7 +74,7 @@ func initConfig() {
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+		jww.ERROR.Println("Using config file:", viper.ConfigFileUsed())
 	}
 
 	if Debug {
