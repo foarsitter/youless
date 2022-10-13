@@ -4,7 +4,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/push"
 	jww "github.com/spf13/jwalterweatherman"
-	"os"
 	"time"
 )
 
@@ -23,10 +22,8 @@ var (
 	})
 )
 
-func Background(serverIP string) {
+func Background(serverIP, pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue string) {
 	jww.INFO.Print("Starting background process")
-
-	UpdateValues(serverIP)
 
 	ticker := time.NewTicker(time.Minute)
 	done := make(chan bool)
@@ -38,7 +35,7 @@ func Background(serverIP string) {
 				return
 			case <-ticker.C:
 				jww.INFO.Print("Updating value")
-				UpdateValues(serverIP)
+				UpdateValues(serverIP, pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue)
 			}
 		}
 	}()
@@ -46,7 +43,7 @@ func Background(serverIP string) {
 	select {}
 }
 
-func UpdateValues(serverIP string) {
+func UpdateValues(serverIP, pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue string) {
 	jww.INFO.Printf("Querying server %s", serverIP)
 
 	resp, err := QueryYouless(serverIP)
@@ -57,19 +54,22 @@ func UpdateValues(serverIP string) {
 		totalEnergyUsage.Set(float64(*resp.Net))
 		totalGasUsage.Set(float64(*resp.Gas))
 		currentEnergyUsage.Set(float64(*resp.Pwr))
-		PushToGateway()
+		PushToGateway(pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue)
 	}
 
 }
 
-func PushToGateway() {
-	if err := push.New(os.Getenv("PUSHGATEWAY_URL"), "raspcuterie").
+func PushToGateway(pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue string) {
+	jww.INFO.Printf("Pushing to gateway %s", pushgatewayUrl)
+	if err := push.New(pushgatewayUrl, job).
 		Collector(currentEnergyUsage).
 		Collector(totalEnergyUsage).
 		Collector(totalGasUsage).
-		Grouping("youless", "rivierenhof").
-		BasicAuth(os.Getenv("PUSHGATEWAY_USERNAME"), os.Getenv("PUSHGATEWAY_PASSWORD")).
+		Grouping(groupingName, groupingValue).
+		BasicAuth(pushgatewayUser, pushgatewayPassword).
 		Push(); err != nil {
 		jww.ERROR.Println("Could not push completion time to Pushgateway:", err)
 	}
+
+	jww.INFO.Printf("Push to job %s completed with grouping %s:%s", job, groupingName, groupingValue)
 }

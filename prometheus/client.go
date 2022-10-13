@@ -2,8 +2,8 @@ package prometheus
 
 import (
 	"context"
-	"fmt"
 	"github.com/foarsitter/youless"
+	jww "github.com/spf13/jwalterweatherman"
 )
 
 func QueryYouless(serverURL string) (youless.UploadedValues, error) {
@@ -25,9 +25,11 @@ func QueryYouless(serverURL string) (youless.UploadedValues, error) {
 	apiClient := youless.NewAPIClient(configuration)
 
 	resp, r, err := apiClient.DefaultApi.GetUploadedValues(context.Background()).Execute()
+
+	jww.INFO.Printf("Http status code: %s", r.Status)
+
 	if err != nil {
 		return youless.UploadedValues{}, err
-		fmt.Print(r)
 	}
 	return resp[0], err
 }

@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/viper"
 	"youless-example/prometheus"
 )
@@ -22,19 +21,29 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		jww.INFO.Print(viper.GetString("pushgateway.auth.password"))
-		jww.INFO.Print(viper.GetString("pushgateway.auth.user"))
-		serverIP := viper.GetString("youless.ip")
-		jww.INFO.Print(serverIP)
+		pushgatewayUrl := viper.GetString("pushgateway.url")
+		job := viper.GetString("pushgateway.job")
+		groupingName := viper.GetString("pushgateway.group.name")
+		groupingValue := viper.GetString("pushgateway.group.value")
+		pushgatewayUser := viper.GetString("pushgateway.auth.user")
+		pushgatewayPassword := viper.GetString("pushgateway.auth.password")
 
-		prometheus.Background(serverIP)
+		serverIP := viper.GetString("youless.ip")
+
+		prometheus.UpdateValues(serverIP, pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue)
+
+		if !DoNotRunInBackground {
+			prometheus.Background(serverIP, pushgatewayUrl, pushgatewayUser, pushgatewayPassword, job, groupingName, groupingValue)
+		}
+
 	},
 }
 
 var (
-	PushgatewayHost     string
-	PushgatewayUser     string
-	PushgatewayPassword string
+	PushgatewayHost      string
+	PushgatewayUser      string
+	PushgatewayPassword  string
+	DoNotRunInBackground bool
 )
 
 func init() {
@@ -43,6 +52,7 @@ func init() {
 	pushgatewayCmd.Flags().StringVar(&PushgatewayHost, "host", "", "The host url of the Prometheus Pushgateway")
 	pushgatewayCmd.Flags().StringVar(&PushgatewayUser, "user", "", "The user of the Prometheus Pushgateway")
 	pushgatewayCmd.Flags().StringVar(&PushgatewayPassword, "password", "", "The password of the Prometheus Pushgateway")
+	pushgatewayCmd.Flags().BoolVar(&DoNotRunInBackground, "single", false, "The password of the Prometheus Pushgateway")
 
 	viper.BindPFlag("pushgateway.host", pushgatewayCmd.Flags().Lookup("host"))
 	viper.BindPFlag("pushgateway.auth.user", pushgatewayCmd.Flags().Lookup("user"))

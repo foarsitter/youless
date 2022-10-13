@@ -14,6 +14,7 @@ import (
 
 var cfgFile string
 var YoulessIP string
+var Debug bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -42,15 +43,13 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	jww.SetLogThreshold(jww.LevelTrace)
-	jww.SetStdoutThreshold(jww.LevelInfo)
-	jww.INFO.Print("Hi there!")
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.youless.yaml)")
 	rootCmd.PersistentFlags().StringVar(&YoulessIP, "ip", "", "The IP adres where your Youless is located")
+	rootCmd.PersistentFlags().BoolVar(&Debug, "debug", false, "Show log messages")
 
 	viper.BindPFlag("youless.ip", rootCmd.PersistentFlags().Lookup("ip"))
 }
@@ -76,5 +75,10 @@ func initConfig() {
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+	}
+
+	if Debug {
+		jww.SetLogThreshold(jww.LevelTrace)
+		jww.SetStdoutThreshold(jww.LevelTrace)
 	}
 }

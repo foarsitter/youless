@@ -1,8 +1,10 @@
 youless:
   ip: http://localhost:1080
 pushgateway:
+  url: https://pushgateway.srv1.jelmertdev.nl
+  job: raspcuterie
+  group:
+    name: youless
+    value: testing
   auth:
-    user: jelmert
-    password: test1234
-#pushgateway.user: jelmert
-#user: jelmert
+    user: admin
